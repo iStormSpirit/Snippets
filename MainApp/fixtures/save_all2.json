@@ -1,0 +1,117 @@
+[
+  {
+    "model": "MainApp.comment",
+    "pk": 1,
+    "fields": {
+      "text": "this is first snip",
+      "creation_date": "2021-11-11T01:34:09.234Z",
+      "author": 1,
+      "snippet": 1
+    }
+  },
+  {
+    "model": "MainApp.comment",
+    "pk": 2,
+    "fields": {
+      "text": "hello",
+      "creation_date": "2021-11-11T01:43:04.064Z",
+      "author": 2,
+      "snippet": 1
+    }
+  },
+  {
+    "model": "MainApp.comment",
+    "pk": 3,
+    "fields": {
+      "text": "dsfsdk;fsdkf;sk f;sldfks;lfksd; fksdf;lk s;dlfks;fk s;fks;fksd;f ks;flk sd;flk s;dflks d;flksf; skf;slfk s;lfks;fk",
+      "creation_date": "2021-11-11T02:22:46.727Z",
+      "author": 2,
+      "snippet": 1
+    }
+  },
+  {
+    "model": "MainApp.comment",
+    "pk": 4,
+    "fields": {
+      "text": "agdggg",
+      "creation_date": "2021-11-11T02:23:56.789Z",
+      "author": 3,
+      "snippet": 1
+    }
+  },
+  {
+    "model": "MainApp.comment",
+    "pk": 5,
+    "fields": {
+      "text": "dsfsdk;fsdkf;sk f;sldfks;lfksd; fksdf;lk s;dlfks;fk s;fks;fksd;f ks;flk sd;flk s;dflks d;flksf; skf;slfk s;lfks;fk\r\nfdsfsdfsdf",
+      "creation_date": "2021-11-11T02:24:05.218Z",
+      "author": 3,
+      "snippet": 1
+    }
+  },
+  {
+    "model": "MainApp.snippet",
+    "pk": 1,
+    "fields": {
+      "name": "admin snip1",
+      "lang": "py",
+      "code": "#python public code here\r\nprint('hi')",
+      "creation_date": "2021-11-11T01:33:45.839Z",
+      "user": 1,
+      "image": "images/download.jpeg",
+      "public": true
+    }
+  },
+  {
+    "model": "MainApp.snippet",
+    "pk": 3,
+    "fields": {
+      "name": "admin snip2",
+      "lang": "js",
+      "code": "this is second private snip\r\nprint('private')",
+      "creation_date": "2021-11-11T01:38:07.130Z",
+      "user": 1,
+      "image": "images/download.png",
+      "public": true
+    }
+  },
+  {
+    "model": "MainApp.snippet",
+    "pk": 4,
+    "fields": {
+      "name": "user snip pub1",
+      "lang": "C++",
+      "code": "this is public user snip",
+      "creation_date": "2021-11-11T01:39:57.578Z",
+      "user": 2,
+      "image": "images/124.jpg",
+      "public": true
+    }
+  },
+  {
+    "model": "MainApp.snippet",
+    "pk": 5,
+    "fields": {
+      "name": "user snip pub2",
+      "lang": "js",
+      "code": "this is user snip pub2",
+      "creation_date": "2021-11-11T01:40:24.063Z",
+      "user": 2,
+      "image": "",
+      "public": true
+    }
+  },
+  {
+    "model": "MainApp.snippet",
+    "pk": 6,
+    "fields": {
+      "name": "user snip private",
+      "lang": "C++",
+      "code": "private user snipp",
+      "creation_date": "2021-11-11T01:41:10.102Z",
+      "user": 2,
+      "image": "images/514.jpg",
+      "public": false
+    }
+  }
+]

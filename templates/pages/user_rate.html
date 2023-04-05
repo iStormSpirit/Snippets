@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<table>
+    <tr>
+        <th>id</th>
+        <th>username</th>
+        <th>Count snippets</th>
+        <th>Count comments</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{user.id}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.count_snippets}}</td>
+        <td>{{user.count_comments}}</td>
+    </tr>
+    {% endfor %}
+</table>

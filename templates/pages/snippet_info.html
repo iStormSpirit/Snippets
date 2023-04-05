@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load my_tags %}
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h1>{{ pagename }}</h1>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-8 offset-2">
+            <h2>Описание сниппета:</h2>
+            <form method="post" action="{% url 'snippet-edit' snippet.id %}">
+                <fieldset {% if not edit %} disabled {% endif %}>
+                    {% csrf_token %}
+                    <div class="row disabled">
+                        <div class="col col-4">
+                            Название: <input type="text" value="{{ snippet.name }}" class="form-control">
+                        </div>
+                        <div class="col col-2">
+                            Язык:<input type="text" value="{{ snippet.lang }}" class="form-control">
+                        </div>
+                        <div class="col-2">
+                            Публичный: <input type="text" value="{{ form.public }}" class="form-control">
+                        </div>
+                        <div class="col col-4">
+                            Дата создания:<input type="text" value="{{ snippet.creation_date }}" class="form-control">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-2">
+                            <img src="{{ MEDIA_URL }}{{ snippet.image }}">
+                        </div>
+                        <div class="col-10">
+                            <div class="p-2 h-100" style="border:1px solid #ced4da; border-radius:5px;">
+                                {% if not edit %}
+                                <p>
+                                    {{ snippet.code | format_code | safe}}
+                                </p>
+                                {% else %}
+                                <textarea name="code">
+                                {{ snippet.code }}
+                            </textarea>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                {% if edit %}
+                <button type="submit">Сохранить</button>
+                {% endif %}
+            </form>
+
+            <table>
+                <tr>
+                    <th>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="p-2 h-100" style="border:1px solid #ced4da; border-radius:5px;">
+                                    Автор
+                                </div>
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="p-2 h-100" style="border:1px solid #ced4da; border-radius:5px;">
+                                    Комментарий
+                                </div>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+
+                {% for comment in snippet.comments.all %}
+
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="p-2 h-100" style="border:1px solid #ced4da; border-radius:5px;">
+                                    {{comment.author.username}}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="p-2 h-100" style="border:1px solid #ced4da; border-radius:5px;">
+                                    {{comment.text}}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+
+            {% if request.user.is_authenticated %}
+            <div class="">
+                <div class="p-2 h-100" style="border:1px solid #ced4da; border-radius:5px;">
+                    <form method="post" action="{% url 'comment_add' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="snippet_id" value="{{ snippet.id }}">
+                        <table>
+                            {{ form_comment.as_table }}
+                        </table>
+                        <button type="submit">
+                            Отправить
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+[
+  {
+    "model": "MainApp.snippet",
+    "pk": 1,
+    "fields": {
+      "name": "Hello world Snippet",
+      "lang": "",
+      "code": "print(\"Hello world\")",
+      "creation_date": "2021-10-15T11:16:35.082Z"
+    }
+  },
+  {
+    "model": "MainApp.snippet",
+    "pk": 2,
+    "fields": {
+      "name": "test",
+      "lang": "python",
+      "code": "a=5 \n print(a)",
+      "creation_date": "2021-10-15T11:20:00.775Z"
+    }
+  },
+  {
+    "model": "MainApp.snippet",
+    "pk": 3,
+    "fields": {
+      "name": "new sni[",
+      "lang": "C++",
+      "code": "some code c++",
+      "creation_date": "2021-10-15T12:55:44.981Z"
+    }
+  }
+]

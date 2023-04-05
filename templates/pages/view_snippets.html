@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <form method="get" action="">
+            <select name="user">
+                {% for user in users %}
+                <option>{{ user.username }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">select</button>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h1>{{ pagename }}</h1>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>На данной страницы отображаются все созданные сниппеты.</p>
+            <hr>
+        </div>
+    </div>
+
+    <div class="col">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+
+                <th scope="col">
+                    {% if fields.id == 2 %}
+                    <a href="?sort=id">
+                        ID <i class="fas fa-caret-up"></i>
+                    </a>
+                    {% elif fields.id == 1 %}
+                    <a href="?sort=-id">
+                        ID <i class="fas fa-caret-down"></i>
+                    </a>
+                    {% else %}
+                    <a href="?sort=id">
+                        ID
+                    </a>
+                    {% endif %}
+                </th>
+
+                <th scope="col">
+                    {% if fields.name == 2 %}
+                    <a href="?sort=name">
+                        Название <i class="fas fa-caret-up"></i>
+                    </a>
+                    {% elif fields.name == 1 %}
+                    <a href="?sort=-name">
+                        Название <i class="fas fa-caret-down"></i>
+                    </a>
+                    {% else %}
+                    <a href="?sort=name">
+                        Название
+                    </a>
+                    {% endif %}
+                </th>
+
+                <th scope="col"></th>
+
+                <th scope="col">
+                    <a href="?sort=lang">
+                        Язык <i class="fas fa-caret-up"></i>
+                    </a>
+                </th>
+
+                <th scope="col">
+                    <a href="?sort=user">
+                        Автор <i class="fas fa-caret-up"></i>
+                    </a>
+                </th>
+                <th scope="col">
+                    <a href="?sort=creation_date">
+                        Дата создания <i class="fas fa-caret-up"></i>
+                    </a>
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for snippet in snippets %}
+            <tr>
+                <td scope="row">{{ snippet.id }}</td>
+                <td>
+                    <a href="{% url 'snippet-page' snippet.id %}">{{ snippet.name }}</a>
+                </td>
+                <td>
+                    {% if snippet.user == request.user %}
+                    <a href="{% url 'snippet-delete' snippet.id %}"> <i class="fas fa-ban"></i></a>
+                    &nbsp
+                    <a href="{% url 'snippet-edit' snippet.id %}"> <i class="far fa-edit"></i></a>
+                    {% endif %}
+                </td>
+                <td>{{ snippet.lang }}</td>
+                <td>{{ snippet.user | default:"Отсутствует" }}</td>
+                <td>{{ snippet.creation_date }}</td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+        <div align="right">
+            <i style="color: gray;">Всего сниппетов: {{ snippets.count }}</i>
+        </div>
+    </div>
+</div>
+{% endblock %}
